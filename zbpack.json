@@ -1,4 +1,4 @@
 {
-  "node_version": 20,
+  "node_version": 22,
   "start_command": "npx prisma migrate deploy && npx tsx prisma/seed.ts && npm start"
 }
