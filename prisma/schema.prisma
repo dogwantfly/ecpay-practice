@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Campaign {
+  id            String   @id @default(cuid())
+  title         String
+  organizerName String
+  description   String
+  goalAmount    Int
+  currentAmount Int      @default(0)
+  imageUrl      String?
+  deadline      DateTime
+  createdAt     DateTime @default(now())
+  orders        Order[]
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  merchantTradeNo String   @unique
+  campaignId      String
+  campaign        Campaign @relation(fields: [campaignId], references: [id])
+  amount          Int
+  buyerName       String
+  buyerEmail      String
+  status          String   @default("PENDING")
+  ecpayTradeNo    String?
+  createdAt       DateTime @default(now())
+}

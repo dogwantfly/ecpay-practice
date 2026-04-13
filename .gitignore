@@ -10,6 +10,11 @@
 !.yarn/releases
 !.yarn/versions
 
+# SQLite database
+*.db
+*.db-shm
+*.db-wal
+
 # testing
 /coverage
 
@@ -39,3 +44,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
